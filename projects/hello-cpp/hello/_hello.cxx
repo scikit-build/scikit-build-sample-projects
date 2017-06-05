@@ -35,7 +35,7 @@ static PyMethodDef hello_methods[] = {
   },
 
   {
-    "size",
+    "elevation",
     elevation_example,
     METH_VARARGS,
     "Returns elevation of Nevado Sajama."
