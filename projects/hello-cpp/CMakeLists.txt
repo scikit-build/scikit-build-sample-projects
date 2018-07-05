@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.4.0)
 
 project(hello)
 
-find_package(PythonInterp REQUIRED)
-find_package(PythonLibs)
 find_package(PythonExtensions REQUIRED)
 
 add_library(_hello MODULE hello/_hello.cxx)
