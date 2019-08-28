@@ -1,0 +1,8 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+get_filename_component(HELLO_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+if(NOT TARGET hellocore)
+  include ("${HELLO_CMAKE_DIR}/helloTargets.cmake")
+endif()
