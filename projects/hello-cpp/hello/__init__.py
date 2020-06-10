@@ -1,2 +1,2 @@
-from ._hello import hello
-from ._hello import elevation
+from ._hello import hello  # noqa: F401
+from ._hello import elevation  # noqa: F401
