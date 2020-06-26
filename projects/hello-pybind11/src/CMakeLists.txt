@@ -29,3 +29,6 @@ install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
 export( TARGETS hellocore
   NAMESPACE hello::
   APPEND FILE ${hello_export_file})
+
+# Add the wrapper
+add_subdirectory(hello)

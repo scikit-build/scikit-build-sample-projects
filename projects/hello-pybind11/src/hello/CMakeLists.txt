@@ -9,16 +9,10 @@ pybind11_add_module(${python_module_name} MODULE
   )
 target_link_libraries(${python_module_name} PRIVATE hellocore)
 
-install(TARGETS ${python_module_name} DESTINATION hello)
-
-# build tree
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/__init__.py
-     DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-# install tree
-install(FILES __init__.py DESTINATION hello)
+install(TARGETS ${python_module_name} DESTINATION src/hello)
 
 # tests
-if(HELLO_BUILD_TESTING)
+if(BUILD_TESTING)
   set(test_folder "${CMAKE_CURRENT_SOURCE_DIR}/test_python")
   set(python_tests_
     test_hello_pybind11.py
