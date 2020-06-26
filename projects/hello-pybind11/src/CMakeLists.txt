@@ -2,7 +2,7 @@ set(hello_sources
   hello.cpp
   )
 
-add_library(hellocore ${hello_sources} )
+add_library(hellocore SHARED ${hello_sources} )
 target_include_directories(hellocore PUBLIC
   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
@@ -16,9 +16,9 @@ set_property(TARGET hellocore PROPERTY POSITION_INDEPENDENT_CODE ON)
 # install targets
 install(TARGETS hellocore
         EXPORT helloTargets
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION src/hello
+        LIBRARY DESTINATION src/hello
+        ARCHIVE DESTINATION src/hello
         )
 
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
