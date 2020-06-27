@@ -4,7 +4,6 @@
 
 set(python_module_name _hello)
 pybind11_add_module(${python_module_name} MODULE
-  hello_init_py.cpp
   hello_py.cpp
   )
 target_link_libraries(${python_module_name} PRIVATE hellocore)

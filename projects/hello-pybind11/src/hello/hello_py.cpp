@@ -4,7 +4,8 @@
 namespace py = pybind11;
 using namespace hello;
 
-void init_hello(py::module &m) {
+PYBIND11_MODULE(_hello, m) {
+    m.doc() = "_hello"; // optional module docstring {
     m.def("hello", &hello::hello);
     m.def("return_two", &return_two);
 }
