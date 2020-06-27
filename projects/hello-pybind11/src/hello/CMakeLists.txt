@@ -6,14 +6,6 @@ set(python_module_name _hello)
 pybind11_add_module(${python_module_name} MODULE
   hello_py.cpp
   )
-target_link_libraries(${python_module_name} PRIVATE hellocore)
-if (APPLE)
-  set(rpath "@loader_path")
-else()
-  set(rpath "$ORIGIN")
-endif()
-set_target_properties(${python_module_name} PROPERTIES
-    INSTALL_RPATH ${rpath})
 
 install(TARGETS ${python_module_name} DESTINATION src/hello)
 
