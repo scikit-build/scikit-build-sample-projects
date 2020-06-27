@@ -26,7 +26,7 @@ else()
 endif()
 
 
-add_subdirectory(src)
+add_subdirectory(src/hello)
 
 # Quiet a warning, since this project is only valid with SKBUILD
 set(ignoreMe "${SKBUILD}")
