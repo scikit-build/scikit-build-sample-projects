@@ -21,9 +21,5 @@ install(TARGETS hellocore
         ARCHIVE DESTINATION src/hello
         )
 
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
-  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/hello
-  PATTERN "*.txt" EXCLUDE)
-
 # Add the wrapper
 add_subdirectory(hello)
