@@ -10,10 +10,16 @@ earlier versions of pip.
 Example build and install sequence:
 
 ```bash
-python3 -m venv .env
-. .env/bin/activate
 pip install .
 python -c "import hello; hello.hello()"
 ```
 
 This should print "Hello, World!".
+
+## Testing
+
+Testing is managed by tox. This will build the package in a temp directory and runs the tests in the test dir.
+
+```shell
+tox
+```
