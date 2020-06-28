@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.14...3.17)
 
 project(hello-pybind11 VERSION "0.1")
 
-include(CTest)
-option(BUILD_TESTING "Build the tests too" OFF) # defined above, but on by default
 option(HELLO_USE_SYSTEM_PYBIND11 "Use pybind11 installed in the system" OFF)
 
 # Define CMAKE_INSTALL_xxx: LIBDIR, INCLUDEDIR

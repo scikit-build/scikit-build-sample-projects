@@ -9,22 +9,3 @@ pybind11_add_module(${python_module_name} MODULE
 
 install(TARGETS ${python_module_name} DESTINATION src/hello)
 
-# tests
-if(BUILD_TESTING)
-  set(test_folder "${CMAKE_CURRENT_SOURCE_DIR}/test_python")
-  set(python_tests_
-    test_hello_pybind11.py
-  )
-
-  # test files should start with "test_"
-  # unittest functions (in .py) should start with "test_" for discover to work
-  foreach(python_test ${python_tests_})
-      add_test(NAME python||${python_module_name}||${python_test}
-        COMMAND ${PYTHON_EXECUTABLE}
-          -m unittest discover
-          -s ${test_folder}
-          -p ${python_test}
-      )
-  endforeach()
-endif()
-
