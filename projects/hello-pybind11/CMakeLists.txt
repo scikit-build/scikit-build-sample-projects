@@ -23,8 +23,12 @@ else()
   find_package(pybind11 REQUIRED)
 endif()
 
+set(python_module_name _hello)
+pybind11_add_module(${python_module_name} MODULE
+  src/hello/hello_py.cpp
+  )
 
-add_subdirectory(src/hello)
+install(TARGETS ${python_module_name} DESTINATION src/hello)
 
 # Quiet a warning, since this project is only valid with SKBUILD
 set(ignoreMe "${SKBUILD}")
