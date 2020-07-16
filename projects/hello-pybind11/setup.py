@@ -14,6 +14,6 @@ setup(
     author='Pablo Hernandez-Cerdan',
     license="MIT",
     packages=['hello'],
-    package_dir={'': 'src'}
-    #cmake=['-DBUILD_TESTING:BOOL=TRUE',]
+    package_dir={'': 'src'},
+    cmake_install_dir='src/hello'
 )

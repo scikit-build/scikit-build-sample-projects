@@ -20,7 +20,7 @@ pybind11_add_module(${python_module_name} MODULE
   src/hello/hello_py.cpp
   )
 
-install(TARGETS ${python_module_name} DESTINATION src/hello)
+install(TARGETS ${python_module_name} DESTINATION .)
 
 # Quiet a warning, since this project is only valid with SKBUILD
 set(ignoreMe "${SKBUILD}")
