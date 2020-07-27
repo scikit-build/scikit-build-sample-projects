@@ -3,11 +3,9 @@ import sys
 try:
     from skbuild import setup
 except ImportError:
-    print('scikit-build is required to build from source.', file=sys.stderr)
-    print('Please run:', file=sys.stderr)
-    print('', file=sys.stderr)
-    print('  python -m pip install scikit-build')
-    sys.exit(1)
+    print('Please update pip, you need pip 10 or greater,\n'
+          ' or you need to install the PEP 518 requirements in pyproject.toml yourself', file=sys.stderr)
+    raise
 
 setup(
     name="hello-pybind11",
@@ -16,5 +14,6 @@ setup(
     author='Pablo Hernandez-Cerdan',
     license="MIT",
     packages=['hello'],
-    #cmake=['-DHELLO_BUILD_TESTING:BOOL=TRUE',]
+    package_dir={'': 'src'},
+    cmake_install_dir='src/hello'
 )
