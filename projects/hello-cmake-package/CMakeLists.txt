@@ -78,13 +78,10 @@ if (DEFINED SKBUILD)
     # prevent an unused variable warning
     set(ignoreMe "${SKBUILD}")
 
-    include(FetchContent)
-
-    FetchContent_Declare(pybind11
-      GIT_REPOSITORY https://github.com/pybind/pybind11
-      GIT_TAG v2.5.0
-    )
-    FetchContent_MakeAvailable(pybind11)
+    # call pybind11-config to obtain the root of the cmake package
+    execute_process(COMMAND ${PYTHON_EXECUTABLE} -m pybind11 --cmakedir OUTPUT_VARIABLE pybind11_ROOT_RAW)
+    string(STRIP ${pybind11_ROOT_RAW} pybind11_ROOT)
+    find_package(pybind11)
 
     pybind11_add_module(_hello MODULE
       "${PROJECT_SOURCE_DIR}/src/hello/hello_py.cpp"
@@ -99,6 +96,14 @@ if (DEFINED SKBUILD)
     install(TARGETS _hello
         DESTINATION .
     )
+
+    configure_file(
+        "${PROJECT_SOURCE_DIR}/src/hello/__main__.py.in"
+        "${PROJECT_BINARY_DIR}/src/hello/__main__.py")
+
+    install(FILES
+        "${PROJECT_BINARY_DIR}/src/hello/__main__.py"
+        DESTINATION .)
 
     # The extension module must load the hello library as a dependency when the extension
     # module is loaded. The easiest way to locate the hello library is via RPATH.

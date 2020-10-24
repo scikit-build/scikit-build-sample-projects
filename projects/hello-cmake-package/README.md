@@ -21,7 +21,7 @@ pytest
 To run the C++ test, first install the package, then configure and build the project
 
 ```
-cmake -S test/cpp -B build/ -DCMAKE_PREFIX_PATH=/path/to/python/package/installation/prefix
+cmake -S test/cpp -B build/ -Dhello_ROOT=$(python -m hello --cmakefiles)
 cmake --build build/
 ```
 
