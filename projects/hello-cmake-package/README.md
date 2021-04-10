@@ -8,26 +8,26 @@ pybind11 is used to implement the biding, but anything is possible: swig, C API 
 
 To install the package run in the project directory
 
-```
+```bash
 pip install .
 ```
 
 To run the Python tests, first install the package then in the project directory run
 
-```
+```bash
 pytest
 ```
 
 To run the C++ test, first install the package, then configure and build the project
 
-```
+```bash
 cmake -S test/cpp -B build/ -Dhello_ROOT=$(python -m hello --cmakefiles)
 cmake --build build/
 ```
 
 Then run ctest in the build dir
 
-```
+```bash
 cd build/
 ctest
 ```
