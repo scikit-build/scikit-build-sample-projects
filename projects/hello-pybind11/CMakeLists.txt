@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14...3.17)
+cmake_minimum_required(VERSION 3.14...3.18)
 
 project(hello-pybind11 VERSION "0.1")
 
@@ -11,7 +11,7 @@ include(FetchContent)
 FetchContent_Declare(
   pybind11
   GIT_REPOSITORY https://github.com/pybind/pybind11
-  GIT_TAG v2.5.0
+  GIT_TAG v2.6.2
 )
 FetchContent_MakeAvailable(pybind11)
 
