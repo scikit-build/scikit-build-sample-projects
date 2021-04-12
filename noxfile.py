@@ -10,10 +10,11 @@ def hello_pure(session):
 
 @nox.session
 def hello_cpp(session):
-    session.cd("projects/hello-cython")
+    session.cd("projects/hello-cpp")
     session.install("pytest", "pytest-cov")
-    session.install("dist/*.whl")
-    session.run("pytest")  #  TODO: probably broken due to lack of /src structure
+    session.install(".")
+    session.cd("tests")
+    session.run("pytest")
 
 @nox.session
 def hello_pybind11(session):
@@ -27,7 +28,8 @@ def hello_cython(session):
     session.cd("projects/hello-cython")
     session.install("pytest", "pytest-cov")
     session.install(".")
-    session.run("pytest")  # TODO: probably broken due to lack of /src structure
+    session.cd("tests")
+    session.run("pytest")
 
 @nox.session
 def pen2_cython(session):
