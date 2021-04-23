@@ -2,7 +2,7 @@ import nox
 from pathlib import Path
 import shutil
 
-hello_list = "hello-pure", "hello-cpp", "hello-pybind11", "hello-cython"
+hello_list = "hello-pure", "hello-cpp", "hello-pybind11", "hello-cython", "hello-cmake-package"
 
 
 @nox.session
