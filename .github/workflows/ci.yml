@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+    - master
+
+jobs:
+  checks:
+    runs-on: ${{ matrix.runs-on }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on: [ubuntu-latest, macos-latest]
+
+    name: Check on ${{ matrix.runs-on }}
+    
+    steps:
+    - uses: actions/checkout@v2
+    - uses: excitedleigh/setup-nox@v2.0.0
+    - run: nox --force-color
