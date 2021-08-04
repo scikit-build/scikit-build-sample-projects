@@ -14,4 +14,3 @@ typedef void (*cy_routine)(unsigned int, unsigned int,
                            PyObject *, PyObject *);
 
 extern void TB_CYCLE(unsigned int, unsigned int, PyObject *, PyObject *);
-

@@ -2,12 +2,14 @@
 import hello
 import unittest
 
+
 class TestHello(unittest.TestCase):
     def test_hello(self):
         hello.hello()
 
     def test_return_two(self):
         self.assertEqual(hello.return_two(), 2)
+
 
 if __name__ == "__main__":
     unittest.main()

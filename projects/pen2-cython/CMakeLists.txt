@@ -9,4 +9,3 @@ find_package(Cython REQUIRED)
 
 add_subdirectory(src)
 add_subdirectory(scripts)
-

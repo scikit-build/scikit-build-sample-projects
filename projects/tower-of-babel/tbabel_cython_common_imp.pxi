@@ -38,4 +38,3 @@ def cycle(N, i, cy_routines, py_routines):
 
 def get_c_handle():
     return <size_t>(_cycle)
-
