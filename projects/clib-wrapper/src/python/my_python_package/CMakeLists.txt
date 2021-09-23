@@ -1,5 +1,5 @@
 set(cython_source "_cython_wrapper.pyx")
-set(MODULE_NAME "_pycold_cython")
+set(MODULE_NAME "_cython_wrapper")
 
 # Translate Cython into C/C++
 add_cython_target(${MODULE_NAME} "${cython_source}" C OUTPUT_VAR sources)
