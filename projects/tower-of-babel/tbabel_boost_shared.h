@@ -7,4 +7,3 @@
 #include <tbabel_boost_common.h>
 
 #endif /* !_TBABEL_BOOST_SHARED_H */
-

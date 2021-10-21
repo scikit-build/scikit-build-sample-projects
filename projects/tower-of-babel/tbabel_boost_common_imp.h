@@ -63,4 +63,3 @@ BOOST_PYTHON_MODULE(TB_MODULE)
   def("cycle", cycle);
   def("get_c_handle", get_c_handle);
 }
-

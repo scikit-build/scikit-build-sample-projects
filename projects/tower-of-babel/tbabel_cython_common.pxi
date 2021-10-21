@@ -6,4 +6,3 @@ ctypedef void (*cy_routine)(
 
 cdef void _cycle(unsigned int N, unsigned int i,
                  list cy_routines, list py_routines)
-

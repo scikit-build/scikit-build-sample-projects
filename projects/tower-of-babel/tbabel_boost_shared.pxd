@@ -7,4 +7,3 @@ cdef extern from "tbabel_boost_shared.h":
 
     void cycle "tb_shared_cycle"(unsigned int N, unsigned int i,
                                  list cy_routines, list py_routines)
-

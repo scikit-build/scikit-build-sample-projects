@@ -7,4 +7,3 @@ cdef extern from "tbabel_boost_module.h":
 
     void cycle "tb_module_cycle"(unsigned int N, unsigned int i,
                                  list cy_routines, list py_routines)
-
