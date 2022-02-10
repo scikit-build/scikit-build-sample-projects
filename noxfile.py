@@ -1,35 +1,25 @@
 import nox
-from pathlib import Path
-import shutil
+
 
 hello_list = "hello-pure", "hello-cpp", "hello-pybind11", "hello-cython", "hello-cmake-package"
+long_hello_list = hello_list + ("pen2-cython",)
 
 
 @nox.session
-@nox.parametrize("module", hello_list + ("pen2-cython",))
-def dist(session, module):
+@nox.parametrize("module", long_hello_list, ids=long_hello_list)
+def dist(session: nox.Session, module: str) -> None:
     session.cd(f"projects/{module}")
     session.install("build")
-
-    # Cleanup bad caching
-    skbuild = Path("_skbuild")
-    if skbuild.exists():
-        shutil.rmtree(skbuild)
 
     # Builds SDist and wheel
     session.run("pyproject-build")
 
 
 @nox.session
-@nox.parametrize("module", hello_list)
-def test(session, module):
+@nox.parametrize("module", hello_list, ids=hello_list)
+def test(session: nox.Session, module: str) -> None:
     session.cd(f"projects/{module}")
     session.install("pytest", "pytest-cov")
-
-    # Cleanup bad caching
-    skbuild = Path("_skbuild")
-    if skbuild.exists():
-        shutil.rmtree(skbuild)
 
     session.install(".")
     session.run("pytest")

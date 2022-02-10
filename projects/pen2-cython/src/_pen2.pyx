@@ -170,4 +170,3 @@ cdef class Pen2Sim:
 
     def advance(self):
         return self.simulate()
-

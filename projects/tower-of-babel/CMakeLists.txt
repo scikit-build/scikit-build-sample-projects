@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5.0)
+cmake_minimum_required(VERSION 3.5...3.22)
 
 project(tower_of_babel)
 
@@ -70,4 +70,3 @@ install(FILES tbabel_python.py DESTINATION ${site_packages})
 file(COPY tbabel_python.py DESTINATION ${CMAKE_BINARY_DIR})
 
 add_subdirectory(scripts)
-
