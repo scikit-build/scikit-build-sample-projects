@@ -7,6 +7,6 @@ setup(
                 "module types and code generation technologies",
     author="The scikit-build team",
     license="MIT",
-
     scripts=['scripts/tbabel'],
+    python_requires='>=3.7',
 )
