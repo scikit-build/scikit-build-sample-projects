@@ -16,7 +16,7 @@ def dist(session: nox.Session, module: str) -> None:
     session.install("build")
 
     # Builds SDist and wheel
-    session.run("pyproject-build")
+    session.run("python", "-m", "build")
 
 
 @nox.session
