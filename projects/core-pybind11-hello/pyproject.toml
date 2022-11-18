@@ -5,4 +5,3 @@ build-backend = "scikit_build_core.build"
 [project]
 name = "skcdemo"
 version = "0.1.0"
-
