@@ -9,5 +9,6 @@ setup(
     packages=['hello'],
     package_dir={'': 'src'},
     cmake_install_dir='src/hello',
+    install_requires=["numpy"],
     python_requires='>=3.7',
 )

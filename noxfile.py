@@ -3,7 +3,7 @@ import sys
 import nox
 
 
-hello_list = ["hello-pure", "hello-cpp", "hello-pybind11", "hello-cython"]
+hello_list = ["hello-pure", "hello-cpp", "hello-pybind11", "hello-cython", "hello-numpy"]
 if not sys.platform.startswith("win"):
     hello_list.append("hello-cmake-package")
 long_hello_list = hello_list + ["pen2-cython"]
