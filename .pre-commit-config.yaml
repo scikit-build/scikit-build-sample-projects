@@ -13,8 +13,18 @@ repos:
   - id: requirements-txt-fixer
   - id: trailing-whitespace
 
-- repo: https://github.com/PyCQA/flake8
-  rev: 6.0.0
+- repo: https://github.com/charliermarsh/ruff-pre-commit
+  rev: "v0.0.253"
   hooks:
-  - id: flake8
-    additional_dependencies: [flake8-bugbear]
+    - id: ruff
+      args: ["--fix", "--show-fixes"]
+
+- repo: https://github.com/psf/black
+  rev: "23.1.0"
+  hooks:
+    - id: black
+
+- repo: https://github.com/codespell-project/codespell
+  rev: "v2.2.2"
+  hooks:
+    - id: codespell
