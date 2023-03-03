@@ -1,9 +1,8 @@
-
 from random import getrandbits
 from sys import stdout
 
 
-def cycle(n, i, cy_routines, py_routines):
+def cycle(n, i, cy_routines, py_routines):  # noqa: ARG001
     n_py = len(py_routines)
 
     new_index = getrandbits(32) % n_py

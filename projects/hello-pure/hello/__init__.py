@@ -1,5 +1,3 @@
-
-
 def hello(txt):
     print("Hello, %s!" % txt)
 

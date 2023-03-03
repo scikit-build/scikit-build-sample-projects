@@ -6,11 +6,8 @@ setup(
     description="double pendulum simulation (cython version)",
     author="The scikit-build team",
     license="MIT",
-
-    packages=['pen2_cython'],
-    package_dir={
-        'pen2_cython': 'src'
-    },
-    scripts=['scripts/pen2_cython'],
-    python_requires='>=3.7',
+    packages=["pen2_cython"],
+    package_dir={"pen2_cython": "src"},
+    scripts=["scripts/pen2_cython"],
+    python_requires=">=3.7",
 )
