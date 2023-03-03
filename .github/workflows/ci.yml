@@ -15,19 +15,40 @@ env:
   FORCE_COLOR: 3
 
 jobs:
+  generate-jobs:
+    runs-on: ubuntu-latest
+    outputs:
+      session: ${{ steps.set-matrix.outputs.session }}
+    steps:
+    - uses: actions/checkout@v3
+    - uses: henryiii/nox@henryiii/feat/json
+    - id: set-matrix
+      run: |
+        MATRIX=$(
+            nox --json -l | jq -c '[.[].session]'
+        )
+        echo "session=$MATRIX" | tee --append $GITHUB_OUTPUT
+
   checks:
+    needs: [generate-jobs]
     runs-on: ${{ matrix.runs-on }}
     strategy:
       fail-fast: false
       matrix:
         runs-on: [ubuntu-latest, macos-latest, windows-latest]
+        session: ${{ fromJson(needs.generate-jobs.outputs.session) }}
+        exclude:
+          - runs-on: windows-latest
+            session: test(hello-cmake-package)
+          - runs-on: windows-latest
+            session: dist(hello-cmake-package)
 
-    name: Check on ${{ matrix.runs-on }}
+    name: Session ${{ matrix.session }} on ${{ matrix.runs-on }}
 
     steps:
     - uses: actions/checkout@v3
     - uses: wntrblm/nox@2022.11.21
-    - run: nox
+    - run: nox -s '${{ matrix.session }}'
 
   pass:
     if: always()
