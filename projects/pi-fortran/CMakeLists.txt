@@ -6,6 +6,14 @@ find_package(PythonInterp REQUIRED)
 find_package(PythonLibs)
 find_package(PythonExtensions REQUIRED)
 
+#NumPy headers
+execute_process(
+  COMMAND "${PYTHON_EXECUTABLE}"
+  -c "import numpy; print(numpy.get_include())"
+  OUTPUT_VARIABLE NumPy_INCLUDE_DIRS
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
 # F2PY headers
 execute_process(
   COMMAND "${PYTHON_EXECUTABLE}"
