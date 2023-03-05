@@ -1,19 +1,19 @@
+from math import pi
 
 from _pen2 import Pen2Sim
-from math import pi
 
 DEFAULT_M0 = 1.0
 DEFAULT_M1 = 1.2
 DEFAULT_L0 = 1.00
 DEFAULT_L1 = 0.75
-DEFAULT_ITH0 = 0.001*int(1000*pi)
+DEFAULT_ITH0 = 0.001 * int(1000 * pi)
 DEFAULT_ITH1 = DEFAULT_ITH0 - 0.001
 DEFAULT_IW0 = 0.0
 DEFAULT_IW1 = 0.0
 # NOTE(opadron): Simulation seems to go in slow motion with the standard gravity
 # constant, so just use a default at 10X strength.
 DEFAULT_G = 98.1
-DEFAULT_DT = 0.001*int(1000.0/60.0)
+DEFAULT_DT = 0.001 * int(1000.0 / 60.0)
 DEFAULT_DURATION = None
 
 
@@ -22,70 +22,134 @@ def main():
 
     parser = ArgumentParser(description="run a double pendulum simulation")
     parser.add_argument(
-        "--mass0", "-m0", type=float, default=DEFAULT_M0, metavar="M0",
-        help="Mass of the first pendulum weight (kg).")
+        "--mass0",
+        "-m0",
+        type=float,
+        default=DEFAULT_M0,
+        metavar="M0",
+        help="Mass of the first pendulum weight (kg).",
+    )
     parser.add_argument(
-        "--mass1", "-m1", type=float, default=DEFAULT_M1, metavar="M1",
-        help="Mass of the second pendulum weight (kg).")
+        "--mass1",
+        "-m1",
+        type=float,
+        default=DEFAULT_M1,
+        metavar="M1",
+        help="Mass of the second pendulum weight (kg).",
+    )
     parser.add_argument(
-        "--length0", "-L0", type=float, default=DEFAULT_L0, metavar="L0",
-        help="Length of the first pendulum arm (m).")
+        "--length0",
+        "-L0",
+        type=float,
+        default=DEFAULT_L0,
+        metavar="L0",
+        help="Length of the first pendulum arm (m).",
+    )
     parser.add_argument(
-        "--length1", "-L1", type=float, default=DEFAULT_L1, metavar="L1",
-        help="Length of the second pendulum arm (m).")
+        "--length1",
+        "-L1",
+        type=float,
+        default=DEFAULT_L1,
+        metavar="L1",
+        help="Length of the second pendulum arm (m).",
+    )
     parser.add_argument(
-        "--theta0", "-th0", type=float, default=DEFAULT_ITH0, metavar="TH0",
-        help=("Initial angle of the first pendulum arm (radians).  "
-              "Zero (0.0) is pointing straight down."))
+        "--theta0",
+        "-th0",
+        type=float,
+        default=DEFAULT_ITH0,
+        metavar="TH0",
+        help=(
+            "Initial angle of the first pendulum arm (radians).  "
+            "Zero (0.0) is pointing straight down."
+        ),
+    )
     parser.add_argument(
-        "--theta1", "-th1", type=float, default=DEFAULT_ITH1, metavar="TH0",
-        help=("Initial angle of the second pendulum arm (radians).  "
-              "Zero (0.0) is pointing parallel to the first arm."))
+        "--theta1",
+        "-th1",
+        type=float,
+        default=DEFAULT_ITH1,
+        metavar="TH0",
+        help=(
+            "Initial angle of the second pendulum arm (radians).  "
+            "Zero (0.0) is pointing parallel to the first arm."
+        ),
+    )
     parser.add_argument(
-        "--omega0", "-w0", type=float, default=DEFAULT_IW0, metavar="W0",
-        help="Initial anglular velocity of the first pendulum arm (radians/s).")
+        "--omega0",
+        "-w0",
+        type=float,
+        default=DEFAULT_IW0,
+        metavar="W0",
+        help="Initial anglular velocity of the first pendulum arm (radians/s).",
+    )
     parser.add_argument(
-        "--omega1", "-w1", type=float, default=DEFAULT_IW1, metavar="W1",
-        help=("Initial anglular velocity of the "
-              "second pendulum arm (radians/s)."))
+        "--omega1",
+        "-w1",
+        type=float,
+        default=DEFAULT_IW1,
+        metavar="W1",
+        help=("Initial anglular velocity of the second pendulum arm (radians/s)."),
+    )
     parser.add_argument(
-        "--gravity", "-g", type=float, default=DEFAULT_G, metavar="G",
-        help=("Strength of the constant downward acceleration "
-              "felt by both pendulum weights due to gravity (m/s^2)."))
+        "--gravity",
+        "-g",
+        type=float,
+        default=DEFAULT_G,
+        metavar="G",
+        help=(
+            "Strength of the constant downward acceleration "
+            "felt by both pendulum weights due to gravity (m/s^2)."
+        ),
+    )
     parser.add_argument(
-        "--time_step", "-dt", type=float, default=DEFAULT_DT, metavar="DT",
-        help="Simulation time step size (s).")
+        "--time_step",
+        "-dt",
+        type=float,
+        default=DEFAULT_DT,
+        metavar="DT",
+        help="Simulation time step size (s).",
+    )
     parser.add_argument(
-        "--duration", "-d", type=float, default=DEFAULT_DURATION, metavar="D",
-        help="Simulation duration (s).")
+        "--duration",
+        "-d",
+        type=float,
+        default=DEFAULT_DURATION,
+        metavar="D",
+        help="Simulation duration (s).",
+    )
 
     args = parser.parse_args()
-    run_simulation(mass0=args.mass0,
-                   mass1=args.mass1,
-                   length0=args.length0,
-                   length1=args.length1,
-                   theta0=args.theta0,
-                   theta1=args.theta1,
-                   omega0=args.omega0,
-                   omega1=args.omega1,
-                   gravity=args.gravity,
-                   time_step=args.time_step,
-                   duration=args.duration)
+    run_simulation(
+        mass0=args.mass0,
+        mass1=args.mass1,
+        length0=args.length0,
+        length1=args.length1,
+        theta0=args.theta0,
+        theta1=args.theta1,
+        omega0=args.omega0,
+        omega1=args.omega1,
+        gravity=args.gravity,
+        time_step=args.time_step,
+        duration=args.duration,
+    )
 
 
 def run_simulation(**kwds):
     from math import pi, sqrt
-    from vtk import (vtkInteractorStyleTerrain,
-                     vtkRenderWindowInteractor,
-                     vtkRenderWindow,
-                     vtkRenderer,
-                     vtkActor,
-                     vtkPolyDataMapper,
-                     vtkSphereSource,
-                     vtkCylinderSource,
-                     vtkTransform)
 
-    from vtk.util.colors import red, blue, brown
+    from vtk import (
+        vtkActor,
+        vtkCylinderSource,
+        vtkInteractorStyleTerrain,
+        vtkPolyDataMapper,
+        vtkRenderer,
+        vtkRenderWindow,
+        vtkRenderWindowInteractor,
+        vtkSphereSource,
+        vtkTransform,
+    )
+    from vtk.util.colors import blue, brown, red
 
     M0 = kwds.get("mass0", DEFAULT_M0)
     M1 = kwds.get("mass1", DEFAULT_M1)
@@ -110,8 +174,8 @@ def run_simulation(**kwds):
     sphere0.SetCenter(0.0, 0.0, 0.0)
     sphere1.SetCenter(0.0, 0.0, 0.0)
 
-    sphere0.SetRadius(0.25*sqrt(M0/pi))
-    sphere1.SetRadius(0.25*sqrt(M1/pi))
+    sphere0.SetRadius(0.25 * sqrt(M0 / pi))
+    sphere1.SetRadius(0.25 * sqrt(M1 / pi))
 
     cylinder0.SetRadius(0.04)
     cylinder1.SetRadius(0.04)
@@ -186,8 +250,8 @@ def run_simulation(**kwds):
         cTran0.RotateZ(180.0 * th0 / pi)
         cTran1.RotateZ(180.0 * th1 / pi)
 
-        cTran0.Translate(0.0, -0.5*L0, 0.0)
-        cTran1.Translate(0.0, -0.5*L1, 0.0)
+        cTran0.Translate(0.0, -0.5 * L0, 0.0)
+        cTran1.Translate(0.0, -0.5 * L1, 0.0)
 
         cAct0.SetUserTransform(cTran0)
         cAct1.SetUserTransform(cTran1)
@@ -201,6 +265,6 @@ def run_simulation(**kwds):
             interactor.ExitCallback()
 
     interactor.AddObserver("TimerEvent", callback)
-    timerid = interactor.CreateRepeatingTimer(int(1000*dt))
+    timerid = interactor.CreateRepeatingTimer(int(1000 * dt))
 
     interactor.Start()

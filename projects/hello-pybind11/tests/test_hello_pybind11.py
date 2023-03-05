@@ -1,6 +1,7 @@
 # This kind of import is automatically done when importing hello from outside
-import hello
 import unittest
+
+import hello
 
 
 class TestHello(unittest.TestCase):
