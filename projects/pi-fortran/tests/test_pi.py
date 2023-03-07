@@ -1,7 +1,7 @@
 import math
 
-import pi
 import pytest
+from pi import pi
 
 
 def test_estimate_pi():

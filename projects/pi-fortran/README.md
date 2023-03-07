@@ -16,3 +16,10 @@ To run the Python tests, first install the package, then in the project director
 ```bash
 pytest
 ```
+
+This is slightly modified from the example in the [numpy docs](https://numpy.org/devdocs/f2py/buildtools/skbuild.html), but we are using Monte Carlo to estimate the value of $\pi$.
+
+A few surprises:
+1. The dreaded underscore problem has a way of cropping up. One solution is explicitly writing out the interface in a [signature (`.pyf`) file](https://numpy.org/devdocs/f2py/signature-file.html).
+2. The module will require numpy to work.
+3. Between failed builds, it is best to clear out the `_skbuild` folder.

@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.4...3.22)
 
-project(pi)
+project(pi
+  VERSION 1.0.1
+  DESCRIPTION "pi estimator"
+  LANGUAGES C Fortran
+)
 
 find_package(PythonInterp REQUIRED)
 find_package(PythonLibs)
@@ -26,14 +30,11 @@ set(f2py_module_name "pi")
 set(fortran_src_file "${CMAKE_SOURCE_DIR}/pi/_pi.f")
 set(f2py_module_c "${f2py_module_name}module.c")
 
-# Target for enforcing dependencies
-add_custom_target(genpyf
-  DEPENDS "${fortran_src_file}"
-)
 add_custom_command(
   OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${f2py_module_c}"
   COMMAND ${PYTHON_EXECUTABLE}  -m "numpy.f2py"
                    "${fortran_src_file}"
+                   "${CMAKE_SOURCE_DIR}/pi/pi.pyf"  # Must include custom .pyf file
                    -m "pi"
                    --lower # Important
   DEPENDS pi/_pi.f # Fortran source
@@ -61,7 +62,5 @@ if (UNIX)
   LINK_FLAGS  '-Wl,--allow-shlib-undefined')
   endif()
 endif()
-
-add_dependencies(${CMAKE_PROJECT_NAME} genpyf)
 
 install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION pi)

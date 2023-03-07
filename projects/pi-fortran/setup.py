@@ -8,4 +8,5 @@ setup(
     license="MIT",
     packages=["pi"],
     python_requires=">=3.7",
+    install_requires=["numpy>=1.21"],
 )
