@@ -3,5 +3,5 @@
 ! and edit if helpful (see F2PY docs)
 subroutine hello(a)
     character(len=*) :: a
-    print *,"Hello, " // a // "!"
+    print "(a)", "Hello, " // a // "!"
 end subroutine hello

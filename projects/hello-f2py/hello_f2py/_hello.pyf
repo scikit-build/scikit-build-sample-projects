@@ -4,7 +4,7 @@
 python module _hello ! in 
     interface  ! in :_hello
         subroutine hello(a) ! in :_hello:hello.f90
-            character*(*) :: a
+            character*(*) intent(in) :: a
         end subroutine hello
     end interface 
 end python module _hello

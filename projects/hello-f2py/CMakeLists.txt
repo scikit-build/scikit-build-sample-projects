@@ -6,4 +6,4 @@ find_package(PythonExtensions REQUIRED)
 find_package(NumPy REQUIRED)
 find_package(F2PY REQUIRED)
 
-add_subdirectory(hello)
+add_subdirectory(hello_f2py)
