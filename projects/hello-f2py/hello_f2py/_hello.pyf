@@ -1,12 +1,12 @@
 !    -*- f90 -*-
 ! Note: the context of this file is case sensitive.
 
-python module _hello ! in 
+python module _hello ! in
     interface  ! in :_hello
         subroutine hello(a) ! in :_hello:hello.f90
             character*(*) intent(in) :: a
         end subroutine hello
-    end interface 
+    end interface
 end python module _hello
 
 ! This file was auto-generated with f2py (version:1.24.2).

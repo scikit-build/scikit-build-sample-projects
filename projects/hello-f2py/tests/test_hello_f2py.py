@@ -2,6 +2,6 @@ from hello_f2py import hello
 
 
 def test_hello(capfd):
-    hello('World')
+    hello("World")
     captured = capfd.readouterr()
-    assert captured.out == 'Hello, World!\n'
+    assert captured.out == "Hello, World!\n"
