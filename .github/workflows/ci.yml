@@ -21,7 +21,7 @@ jobs:
       session: ${{ steps.set-matrix.outputs.session }}
     steps:
     - uses: actions/checkout@v3
-    - uses: henryiii/nox@henryiii/feat/json
+    - uses: wntrblm/nox@2023.04.22
     - id: set-matrix
       run: echo session=$(nox --json -l | jq -c '[.[].session]') | tee --append $GITHUB_OUTPUT
 
@@ -41,7 +41,7 @@ jobs:
             session: dist(hello-cmake-package)
     steps:
     - uses: actions/checkout@v3
-    - uses: wntrblm/nox@2022.11.21
+    - uses: wntrblm/nox@2023.04.22
     - run: nox -s '${{ matrix.session }}'
 
   pass:
