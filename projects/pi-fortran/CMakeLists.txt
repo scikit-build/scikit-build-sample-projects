@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.4...3.22)
+cmake_minimum_required(VERSION 3.17.2...3.26)
 
 project(pi
   VERSION 1.0.1
@@ -6,21 +6,11 @@ project(pi
   LANGUAGES C Fortran
 )
 
-find_package(PythonInterp REQUIRED)
-find_package(PythonLibs)
-find_package(PythonExtensions REQUIRED)
-
-#NumPy headers
-execute_process(
-  COMMAND "${PYTHON_EXECUTABLE}"
-  -c "import numpy; print(numpy.get_include())"
-  OUTPUT_VARIABLE NumPy_INCLUDE_DIRS
-  OUTPUT_STRIP_TRAILING_WHITESPACE
-)
+find_package(Python REQUIRED COMPONENTS Interpreter Development.Module NumPy)
 
 # F2PY headers
 execute_process(
-  COMMAND "${PYTHON_EXECUTABLE}"
+  COMMAND "${Python_EXECUTABLE}"
   -c "import numpy.f2py; print(numpy.f2py.get_include())"
   OUTPUT_VARIABLE F2PY_INCLUDE_DIR
   OUTPUT_STRIP_TRAILING_WHITESPACE
@@ -40,27 +30,15 @@ add_custom_command(
   DEPENDS pi/_pi.f # Fortran source
 )
 
-add_library(${CMAKE_PROJECT_NAME} MODULE
+python_add_library(${CMAKE_PROJECT_NAME} MODULE
             "${f2py_module_name}module.c"
             "${F2PY_INCLUDE_DIR}/fortranobject.c"
-            "${fortran_src_file}")
+            "${fortran_src_file}" WITH_SOABI)
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
                            ${F2PY_INCLUDE_DIR}
-                           ${NumPy_INCLUDE_DIRS}
-                           ${PYTHON_INCLUDE_DIRS})
-set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES SUFFIX "${PYTHON_EXTENSION_MODULE_SUFFIX}")
-set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES PREFIX "")
+                          )
 
-# Linker fixes
-if (UNIX)
-  if (APPLE)
-    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
-    LINK_FLAGS  '-Wl,-dylib,-undefined,dynamic_lookup')
-  else()
-    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
-  LINK_FLAGS  '-Wl,--allow-shlib-undefined')
-  endif()
-endif()
+target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC Python::NumPy)
 
 install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION pi)
