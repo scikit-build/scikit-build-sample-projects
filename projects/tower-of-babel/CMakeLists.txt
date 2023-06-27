@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5...3.22)
+cmake_minimum_required(VERSION 3.15...3.26)
 
 project(tower_of_babel)
 
