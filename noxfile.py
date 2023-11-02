@@ -7,6 +7,7 @@ hello_list = [
     "hello-cpp",
     "hello-pybind11",
     "hello-cython",
+    "core-cython-hello",
 ]
 if not sys.platform.startswith("win"):
     hello_list.extend(

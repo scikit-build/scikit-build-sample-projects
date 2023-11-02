@@ -1,0 +1,20 @@
+[build-system]
+requires = ["scikit-build-core[pyproject]", "cython"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "hello"
+version = "1.2.3"
+authors = [
+  { name = "The scikit-build team" },
+]
+description = "a minimal example package (cython version)"
+requires-python = ">=3.8"
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+]
+dependencies = []
+
+[tool.scikit-build]
+cmake.source-dir = "."
+minimum-version = "0.5"
