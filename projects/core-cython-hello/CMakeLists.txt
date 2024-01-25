@@ -6,6 +6,9 @@ find_package(
   Python
   COMPONENTS Interpreter Development.Module
   REQUIRED)
-find_program(CYTHON "cython")
+
+find_package(
+  Cython
+  REQUIRED)
 
 add_subdirectory(hello)
