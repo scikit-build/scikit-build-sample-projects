@@ -1,5 +1,8 @@
-select = [
-  "E", "F", "W", # flake8
+target-version = "py37"
+line-length = 88
+
+[lint]
+extend-select = [
   "B",           # flake8-bugbear
   "I",           # isort
   "ARG",         # flake8-unused-arguments
@@ -21,8 +24,9 @@ select = [
   "NPY",         # NumPy specific rules
   "PD",          # pandas-vet
 ]
-extend-ignore = [
-  "PLR",    # Design related pylint codes
+ignore = [
+  "PLR09",    # Design related pylint codes
+  "PLR2004",  # Magic values
+  "ISC001",   # Conflicts with formatter
 ]
-target-version = "py37"
 flake8-unused-arguments.ignore-variadic-names = true
