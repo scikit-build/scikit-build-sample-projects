@@ -8,7 +8,13 @@ nox.options.default_venv_backend = "uv|virtualenv"
 hello_list = ["hello-pure", "hello-cpp", "hello-pybind11", "hello-cython"]
 if not sys.platform.startswith("win"):
     hello_list.extend(["hello-cmake-package", "pi-fortran"])
-long_hello_list = [*hello_list, "pen2-cython", "core-c-hello", "core-pybind11-hello"]
+long_hello_list = [
+    *hello_list,
+    "pen2-cython",
+    "core-c-hello",
+    "core-pybind11-hello",
+    "hatchling-pybind11-hello",
+]
 
 
 @nox.session

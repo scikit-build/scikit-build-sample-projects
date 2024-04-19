@@ -1,0 +1,10 @@
+[build-system]
+requires = ["hatchling", "scikit-build-core~=0.9.0", "pybind11"]
+build-backend = "hatchling.build"
+
+[project]
+name = "skcdemo"
+version = "0.1.0"
+
+[tool.hatch.build.targets.wheel.hooks.scikit-build]
+experimental = true
