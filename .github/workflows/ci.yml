@@ -22,18 +22,21 @@ jobs:
       fail-fast: false
       matrix:
         runs-on: [ubuntu-latest, macos-latest, windows-latest]
+        session: [dist, test]
 
-    name: Check on ${{ matrix.runs-on }}
+    name: ${{ matrix.session }} on ${{ matrix.runs-on }}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: awvwgk/setup-fortran@main
       id: setup-fortran
+      if: runner.os != 'Windows'  # We aren't using this yet, and takes 4 mins to setup
       with:
         compiler: gcc
         version: 11
-    - uses: wntrblm/nox@2022.11.21
-    - run: nox
+    - uses: yezz123/setup-uv@v4
+    - uses: wntrblm/nox@2024.04.15
+    - run: nox -s ${{ matrix.session }}
 
   pass:
     if: always()

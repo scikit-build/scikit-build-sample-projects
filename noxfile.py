@@ -2,6 +2,9 @@ import sys
 
 import nox
 
+nox.needs_version = ">=2024.4.15"
+nox.options.default_venv_backend = "uv|virtualenv"
+
 hello_list = ["hello-pure", "hello-cpp", "hello-pybind11", "hello-cython"]
 if not sys.platform.startswith("win"):
     hello_list.extend(["hello-cmake-package", "pi-fortran"])
@@ -15,7 +18,8 @@ def dist(session: nox.Session, module: str) -> None:
     session.install("build")
 
     # Builds SDist and wheel
-    session.run("python", "-m", "build")
+    opt = ["--installer=uv"] if session.venv_backend == "uv" else []
+    session.run("python", "-m", "build", *opt)
 
 
 @nox.session
