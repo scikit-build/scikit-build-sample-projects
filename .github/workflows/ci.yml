@@ -26,13 +26,14 @@ jobs:
     name: Check on ${{ matrix.runs-on }}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: awvwgk/setup-fortran@main
       id: setup-fortran
       with:
         compiler: gcc
         version: 11
-    - uses: wntrblm/nox@2022.11.21
+    - uses: yezz123/setup-uv@v4
+    - uses: wntrblm/nox@2024.04.15
     - run: nox
 
   pass:
