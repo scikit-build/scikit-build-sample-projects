@@ -1,10 +1,11 @@
 !    -*- f90 -*-
 ! Note: the context of this file is case sensitive.
-pymodule pi
-interface
-subroutine estimate_pi(pi_estimated,num_trials) ! in pi/_pi.f
-    real*8 intent(out) :: pi_estimated
-    integer intent(in) :: num_trials
-end subroutine estimate_pi
-end interface
-end pymodule pi
+python module pi
+    interface
+        subroutine estimate_pi(pi_estimated,num_trials) ! in pi/_pi.f
+            real*8 intent(out) :: pi_estimated
+            integer intent(in) :: num_trials
+        end subroutine estimate_pi
+    end interface
+end python module pi
+
