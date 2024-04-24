@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runs-on: [ubuntu-latest, macos-13, windows-latest]
+        runs-on: [ubuntu-latest, macos-12, windows-latest]
         session: [dist, test]
 
     name: ${{ matrix.session }} on ${{ matrix.runs-on }}
@@ -32,7 +32,7 @@ jobs:
       id: setup-fortran
       if: runner.os != 'Windows'
       # We aren't using this yet, and takes 4 mins to setup on Windows
-      # On macOS this causes abut to be hit on macos-13+ and CMake
+      # On macOS this causes a bug to be hit on macos-13+ and CMake, gcc14 may fix
       with:
         compiler: gcc
         version: 12
