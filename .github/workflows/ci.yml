@@ -30,12 +30,12 @@ jobs:
     - uses: actions/checkout@v4
     - uses: awvwgk/setup-fortran@main
       id: setup-fortran
-      if: runner.os == 'Linux'
+      if: runner.os != 'Windows'
       # We aren't using this yet, and takes 4 mins to setup on Windows
       # On macOS this causes abut to be hit on macos-13+ and CMake
       with:
         compiler: gcc
-        version: 11
+        version: 14
     - uses: yezz123/setup-uv@v4
     - uses: wntrblm/nox@2024.04.15
     - run: nox -s ${{ matrix.session }}
