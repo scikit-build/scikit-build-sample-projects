@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.26...3.29)
+
+project(FreeComputePi LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17 CACHE STRING "The C++ standard to use")
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+find_package(
+  Python
+  COMPONENTS Interpreter Development.Module
+  REQUIRED)
+
+python_add_library(_core MODULE src/freecomputepi/_core.cpp WITH_SOABI)
+
+install(TARGETS _core DESTINATION freecomputepi)
