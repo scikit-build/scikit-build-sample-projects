@@ -5,3 +5,9 @@ build-backend = "scikit_build_core.build"
 [project]
 name = "freecomputepi"
 version = "0.0.1"
+
+[tool.cibuildwheel]
+build = "cp313*"
+free-threaded-support = true
+test-command = "pytest {package} --durations=0"
+test-requires = ["pytest"]

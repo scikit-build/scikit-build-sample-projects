@@ -40,6 +40,21 @@ jobs:
     - uses: wntrblm/nox@2024.04.15
     - run: nox -s ${{ matrix.session }}
 
+  free-threading:
+    runs-on: ${{ matrix.runs-on }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on: [ubuntu-latest, windows-latest]
+    name: cibw on ${{ matrix.runs-on }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: pypa/cibuildwheel@v2.18
+      with:
+          package-dir: projects/hello-free-threading
+      env:
+        CIBW_PRERELEASE_PYTHONS: True
+
   pass:
     if: always()
     needs: [checks]

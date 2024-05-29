@@ -4,14 +4,12 @@ import statistics
 import time
 from concurrent.futures import ThreadPoolExecutor
 
-num_trials = 10_000_000
 
-
-def π(num_trials: int) -> float:
+def pi(trials: int) -> float:
     Ncirc = 0
     ran = random.Random()
 
-    for _ in range(num_trials):
+    for _ in range(trials):
         x = ran.uniform(-1, 1)
         y = ran.uniform(-1, 1)
 
@@ -19,24 +17,27 @@ def π(num_trials: int) -> float:
         if test <= 1:
             Ncirc += 1
 
-    return 4.0 * (Ncirc / num_trials)
+    return 4.0 * (Ncirc / trials)
 
 
-def main():
+def pi_in_threads(threads: int, trials: int) -> float:
+    if threads == 0:
+        return pi(trials)
+    with ThreadPoolExecutor(max_workers=threads) as executor:
+        return statistics.mean(executor.map(pi, [trials // threads] * threads))
+
+
+def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--threads", type=int, default=0)
+    parser.add_argument("--trials", type=int, default=10_000_000)
     args = parser.parse_args()
-    threads = args.threads
+
     start = time.monotonic()
-
-    if threads == 0:
-        pi = π(num_trials)
-    else:
-        with ThreadPoolExecutor(max_workers=threads) as executor:
-            pi = statistics.mean(executor.map(π, [num_trials // threads] * threads))
-
+    π = pi_in_threads(args.threads, args.trials)
     stop = time.monotonic()
-    print(f"{num_trials} trials, pi is {pi}, {stop - start:.4} s")
+
+    print(f"{args.trials} trials, {π = }, {stop - start:.4} s")
 
 
 if __name__ == "__main__":
