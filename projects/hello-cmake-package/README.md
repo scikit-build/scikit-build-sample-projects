@@ -4,7 +4,7 @@ This is an example project demonstrating the use of scikit-build for distributin
 a CMake package for that library; and a Python wrapper implemented in pybind11.
 
 The example assume some familiarity with CMake and pybind11, only really going into detail on the scikit-build parts.
-pybind11 is used to implement the biding, but anything is possible: swig, C API library, etc.
+pybind11 is used to implement the binding, but anything is possible: swig, C API library, etc.
 
 To install the package run in the project directory
 
