@@ -1,6 +1,6 @@
 import argparse
-import time
 import statistics
+import time
 from concurrent.futures import ThreadPoolExecutor
 
 from ._core import pi
@@ -19,10 +19,11 @@ def main():
         π = pi(num_trials)
     else:
         with ThreadPoolExecutor(max_workers=threads) as executor:
-            π = statistics.mean(executor.map(pi, [num_trials//threads]*threads))
-    
+            π = statistics.mean(executor.map(pi, [num_trials // threads] * threads))
+
     stop = time.monotonic()
     print(f"{num_trials} trials, {π = }, {stop - start:.4} s")
+
 
 if __name__ == "__main__":
     main()
