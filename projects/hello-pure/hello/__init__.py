@@ -1,5 +1,5 @@
 def hello(txt):
-    print("Hello, %s!" % txt)
+    print(f"Hello, {txt}!")
 
 
 def elevation():
