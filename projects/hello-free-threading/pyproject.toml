@@ -11,3 +11,4 @@ build = "cp313*"
 free-threaded-support = true
 test-command = "pytest {package} --durations=0"
 test-requires = ["pytest"]
+build-frontend = "build"
