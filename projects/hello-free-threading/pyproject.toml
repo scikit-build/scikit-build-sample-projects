@@ -6,9 +6,14 @@ build-backend = "scikit_build_core.build"
 name = "freecomputepi"
 version = "0.0.1"
 
+[tool.scikit-build]
+cmake.verbose = true
+logging.level = "INFO"
+
 [tool.cibuildwheel]
 build = "cp313*"
 free-threaded-support = true
 test-command = "pytest {package} --durations=0"
 test-requires = ["pytest"]
 build-frontend = "build"
+before-build = "python -m sysconfig"
