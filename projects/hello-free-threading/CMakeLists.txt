@@ -11,9 +11,6 @@ find_package(
   COMPONENTS Interpreter Development.Module
   REQUIRED)
 
-include(CMakePrintHelpers)
-cmake_print_variables(Python_LIBRARIES)
-
 python_add_library(_core MODULE src/freecomputepi/_core.cpp WITH_SOABI)
 
 install(TARGETS _core DESTINATION freecomputepi)
