@@ -15,6 +15,8 @@ long_hello_list = [
     "core-pybind11-hello",
     "hatchling-pybind11-hello",
 ]
+if sys.version_info >= (3, 13):
+    hello_list.append("hello-free-threading")
 
 
 @nox.session

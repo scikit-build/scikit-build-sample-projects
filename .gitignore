@@ -56,6 +56,8 @@ docs/_build
 # build output (testing)
 skbuild/cmake_test_compile/*
 *.env
+wheelhouse
+dist/*
 
 # Generated manifests
 MANIFEST
