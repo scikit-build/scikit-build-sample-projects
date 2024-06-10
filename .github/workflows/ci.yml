@@ -45,11 +45,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runs-on: [ubuntu-latest, windows-latest]
+        runs-on: [ubuntu-latest, windows-latest, macos-13, macos-14]
     name: cibw on ${{ matrix.runs-on }}
     steps:
     - uses: actions/checkout@v4
-    - uses: pypa/cibuildwheel@v2.18
+    - uses: yezz123/setup-uv@v4
+    - uses: pypa/cibuildwheel@v2.19
       with:
           package-dir: projects/hello-free-threading
       env:
