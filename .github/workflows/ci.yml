@@ -49,6 +49,7 @@ jobs:
     name: cibw on ${{ matrix.runs-on }}
     steps:
     - uses: actions/checkout@v4
+    - uses: yezz123/setup-uv@v4
     - uses: pypa/cibuildwheel@main
       with:
           package-dir: projects/hello-free-threading
