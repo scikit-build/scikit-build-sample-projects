@@ -1,0 +1,13 @@
+[build-system]
+requires = [
+    "setuptools",
+    "scikit-build>=0.15",
+    "cmake",
+    "ninja",
+    "pybind11-global",
+    "oldest-supported-numpy",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
