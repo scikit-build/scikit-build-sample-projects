@@ -13,4 +13,7 @@ find_package(
 
 python_add_library(_core MODULE src/freecomputepi/_core.cpp WITH_SOABI)
 
-install(TARGETS _core DESTINATION freecomputepi)
+find_package(pybind11 REQUIRED)
+pybind11_add_module(_pybcore MODULE src/freecomputepi/_pybcore.cpp)
+
+install(TARGETS _core _pybcore DESTINATION freecomputepi)
