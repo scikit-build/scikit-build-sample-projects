@@ -28,5 +28,6 @@ ignore = [
   "PLR09",    # Design related pylint codes
   "PLR2004",  # Magic values
   "ISC001",   # Conflicts with formatter
+  "PLC2401",  # Non-ascii variable names are valid
 ]
 flake8-unused-arguments.ignore-variadic-names = true
