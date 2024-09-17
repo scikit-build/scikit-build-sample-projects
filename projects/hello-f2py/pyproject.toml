@@ -1,0 +1,23 @@
+[project]
+name = "hello-f2py"
+version = "1.2.3"
+description = "a minimal example package (cython version)"
+authors = [
+    {name = "The scikit-build team"},
+]
+license = {text = "MIT"}
+requires-python = ">=3.7"
+dependencies = [
+    "numpy",
+]
+
+[build-system]
+requires = [
+    "setuptools",
+    "scikit-build",
+    "cmake",
+    "ninja",
+    "cython",
+    "numpy",
+]
+build-backend = "setuptools.build_meta"
