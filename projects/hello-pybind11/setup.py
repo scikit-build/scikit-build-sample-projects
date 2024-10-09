@@ -9,5 +9,5 @@ setup(
     packages=["hello"],
     package_dir={"": "src"},
     cmake_install_dir="src/hello",
-    python_requires=">=3.7",
+    python_requires=">=3.9",
 )

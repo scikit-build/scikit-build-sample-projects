@@ -9,5 +9,5 @@ setup(
     packages=["pen2_cython"],
     package_dir={"pen2_cython": "src"},
     scripts=["scripts/pen2_cython"],
-    python_requires=">=3.7",
+    python_requires=">=3.9",
 )

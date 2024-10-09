@@ -7,5 +7,5 @@ setup(
     author="The scikit-build team",
     license="MIT",
     packages=["hello"],
-    python_requires=">=3.7",
+    python_requires=">=3.9",
 )
