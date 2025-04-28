@@ -30,11 +30,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - uses: awvwgk/setup-fortran@main
+    - uses: fortran-lang/setup-fortran@v1
       id: setup-fortran
-      if: runner.os != 'Windows'
-      # We aren't using this yet, and takes 4 mins to setup on Windows
-      # On macOS this causes a bug to be hit on macos-13+ and CMake, gcc14 may fix
       with:
         compiler: gcc
         version: 12

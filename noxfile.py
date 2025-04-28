@@ -11,9 +11,8 @@ hello_list = [
     "hello-pybind11",
     "hello-cython",
     "hello-cmake-package",
+    "pi-fortran",
 ]
-if not sys.platform.startswith("win"):
-    hello_list.append("pi-fortran")
 long_hello_list = [
     *hello_list,
     "pen2-cython",
