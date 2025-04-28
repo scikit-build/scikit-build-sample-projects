@@ -1,3 +1,3 @@
 from ._hello import elevation, hello
 
-__all__ = ("hello", "elevation")
+__all__ = ("elevation", "hello")
