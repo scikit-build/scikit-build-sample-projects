@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runs-on: [ubuntu-latest, macos-12, windows-latest]
+        runs-on: [ubuntu-latest, macos-13, windows-latest]
         session: [dist, test]
 
     name: ${{ matrix.session }} on ${{ matrix.runs-on }}
