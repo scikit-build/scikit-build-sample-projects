@@ -43,4 +43,10 @@ target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
 
 target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC Python::NumPy)
 
+# With the MinGW toolchain (Windows), statically link the GNU runtime so the
+# module has no external libgfortran/libgcc/libwinpthread DLL dependencies.
+if(WIN32 AND CMAKE_Fortran_COMPILER_ID STREQUAL "GNU")
+  target_link_options(${CMAKE_PROJECT_NAME} PRIVATE -static)
+endif()
+
 install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION pi)
