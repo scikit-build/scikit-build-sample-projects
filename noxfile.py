@@ -20,12 +20,12 @@ def _fortran_env(module: str) -> dict[str, str] | None:
     gfortran = shutil.which("gfortran")
     if not (gcc and gfortran):
         return None
+    # Forward slashes: backslashes would be read as escapes in CMAKE_ARGS.
+    gcc = gcc.replace("\\", "/")
+    gfortran = gfortran.replace("\\", "/")
     return {
         "CMAKE_GENERATOR": "Ninja",
-        "CMAKE_ARGS": (
-            f"-DCMAKE_C_COMPILER={gcc.replace(chr(92), '/')} "
-            f"-DCMAKE_Fortran_COMPILER={gfortran.replace(chr(92), '/')}"
-        ),
+        "CMAKE_ARGS": f"-DCMAKE_C_COMPILER={gcc} -DCMAKE_Fortran_COMPILER={gfortran}",
     }
 
 
