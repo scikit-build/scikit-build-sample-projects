@@ -15,6 +15,8 @@ execute_process(
   OUTPUT_VARIABLE F2PY_INCLUDE_DIR
   OUTPUT_STRIP_TRAILING_WHITESPACE
 )
+# On Windows the path comes back with backslashes, which CMake reads as escapes.
+file(TO_CMAKE_PATH "${F2PY_INCLUDE_DIR}" F2PY_INCLUDE_DIR)
 
 set(f2py_module_name "pi")
 set(fortran_src_file "${CMAKE_SOURCE_DIR}/pi/_pi.f")
