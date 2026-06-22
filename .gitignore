@@ -61,3 +61,11 @@ dist/*
 
 # Generated manifests
 MANIFEST
+
+# Symlink to AGENTS.md
+CLAUDE.md
+.claude/
+
+# Lockfiles
+uv.lock
+*pylock*
