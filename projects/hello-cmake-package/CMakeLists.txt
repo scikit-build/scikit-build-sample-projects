@@ -29,10 +29,16 @@ install(DIRECTORY "${PROJECT_SOURCE_DIR}/include/"
 #
 # Installing the objects in the package provides encapsulation and will become
 # important later for binary redistribution reasons.
+# RUNTIME/ARCHIVE destinations are needed on Windows: the .dll is a RUNTIME
+# artifact and the import .lib is an ARCHIVE artifact, so a LIBRARY-only
+# destination would install neither. Keeping them all in LIBDIR mirrors the
+# Unix layout (everything under "<package>/lib/").
 install(
   TARGETS hello
   EXPORT helloTargets
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 # The CMake package config and target files are installed under the Python
 # package root. This is necessary to ensure that all the relative paths in the
