@@ -10,6 +10,12 @@ include(GNUInstallDirs)
 # define the C++ library "hello"
 add_library(hello SHARED "${PROJECT_SOURCE_DIR}/src/hello.cpp")
 
+# On Windows, MSVC only emits an import library (hello.lib) when symbols are
+# exported. Without it, linking _hello against this SHARED target fails with
+# LNK1181. Export all symbols so the project builds cross-platform without
+# annotating the source with __declspec(dllexport).
+set_target_properties(hello PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
 target_include_directories(
   hello PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
                $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
