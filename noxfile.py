@@ -10,6 +10,7 @@ hello_list = [
     "hello-cpp",
     "hello-pybind11",
     "hello-cython",
+    "core-cython-hello",
     "hello-cmake-package",
     "pi-fortran",
 ]
