@@ -37,7 +37,7 @@ jobs:
         version: 12
     # setup-fortran installs MinGW via choco, which only edits the machine PATH
     # registry; GitHub Actions doesn't reload that into the running job. Put the
-    # bin dir on PATH so the build (and noxfile compiler lookup) can find it.
+    # bin dir on PATH so CMake can find gcc/gfortran (see pi-fortran override).
     - name: Add MinGW to PATH (Windows)
       if: runner.os == 'Windows'
       shell: pwsh
