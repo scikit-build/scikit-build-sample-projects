@@ -14,3 +14,11 @@ dependencies = ["numpy>=1.21"]
 [tool.scikit-build]
 ninja.version = ">=1.10"
 cmake.version = ">=3.17.2"
+
+# On Windows scikit-build-core defaults to the MSVC toolchain, which has no
+# Fortran compiler. Force the full GNU toolchain so the gfortran from
+# setup-fortran is used (this also stops MSVC auto-activation).
+[[tool.scikit-build.overrides]]
+if.platform-system = "win32"
+cmake.define.CMAKE_C_COMPILER = "gcc"
+cmake.define.CMAKE_Fortran_COMPILER = "gfortran"
