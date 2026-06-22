@@ -5,9 +5,15 @@ import nox
 nox.needs_version = ">=2024.4.15"
 nox.options.default_venv_backend = "uv|virtualenv"
 
-hello_list = ["hello-pure", "hello-cpp", "hello-pybind11", "hello-cython"]
+hello_list = [
+    "hello-pure",
+    "hello-cpp",
+    "hello-pybind11",
+    "hello-cython",
+    "hello-cmake-package",
+]
 if not sys.platform.startswith("win"):
-    hello_list.extend(["hello-cmake-package", "pi-fortran"])
+    hello_list.append("pi-fortran")
 long_hello_list = [
     *hello_list,
     "pen2-cython",

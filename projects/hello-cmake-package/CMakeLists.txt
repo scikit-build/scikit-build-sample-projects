@@ -10,6 +10,12 @@ include(GNUInstallDirs)
 # define the C++ library "hello"
 add_library(hello SHARED "${PROJECT_SOURCE_DIR}/src/hello.cpp")
 
+# On Windows, MSVC only emits an import library (hello.lib) when symbols are
+# exported. Without it, linking _hello against this SHARED target fails with
+# LNK1181. Export all symbols so the project builds cross-platform without
+# annotating the source with __declspec(dllexport).
+set_target_properties(hello PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
 target_include_directories(
   hello PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
                $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
@@ -23,10 +29,16 @@ install(DIRECTORY "${PROJECT_SOURCE_DIR}/include/"
 #
 # Installing the objects in the package provides encapsulation and will become
 # important later for binary redistribution reasons.
+# RUNTIME/ARCHIVE destinations are needed on Windows: the .dll is a RUNTIME
+# artifact and the import .lib is an ARCHIVE artifact, so a LIBRARY-only
+# destination would install neither. Keeping them all in LIBDIR mirrors the
+# Unix layout (everything under "<package>/lib/").
 install(
   TARGETS hello
   EXPORT helloTargets
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 # The CMake package config and target files are installed under the Python
 # package root. This is necessary to ensure that all the relative paths in the
