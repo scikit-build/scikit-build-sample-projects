@@ -15,6 +15,8 @@ execute_process(
   OUTPUT_VARIABLE F2PY_INCLUDE_DIR
   OUTPUT_STRIP_TRAILING_WHITESPACE
 )
+# On Windows the path comes back with backslashes, which CMake reads as escapes.
+file(TO_CMAKE_PATH "${F2PY_INCLUDE_DIR}" F2PY_INCLUDE_DIR)
 
 set(f2py_module_name "pi")
 set(fortran_src_file "${CMAKE_SOURCE_DIR}/pi/_pi.f")
@@ -40,5 +42,11 @@ target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
                           )
 
 target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC Python::NumPy)
+
+# With the MinGW toolchain (Windows), statically link the GNU runtime so the
+# module has no external libgfortran/libgcc/libwinpthread DLL dependencies.
+if(WIN32 AND CMAKE_Fortran_COMPILER_ID STREQUAL "GNU")
+  target_link_options(${CMAKE_PROJECT_NAME} PRIVATE -static)
+endif()
 
 install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION pi)

@@ -14,3 +14,12 @@ dependencies = ["numpy>=1.21"]
 [tool.scikit-build]
 ninja.version = ">=1.10"
 cmake.version = ">=3.17.2"
+
+# Windows defaults to the Visual Studio generator, which has no Fortran support
+# and ignores compiler overrides. Use Ninja with the MinGW toolchain instead
+# (gcc and gfortran must be on PATH).
+[[tool.scikit-build.overrides]]
+if.platform-system = "win32"
+cmake.args = ["-GNinja"]
+cmake.define.CMAKE_C_COMPILER = "gcc"
+cmake.define.CMAKE_Fortran_COMPILER = "gfortran"
