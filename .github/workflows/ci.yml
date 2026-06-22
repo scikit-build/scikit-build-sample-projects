@@ -21,7 +21,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runs-on: [ubuntu-latest, macos-14, windows-latest]
+        # Pin Windows to 2022 (VS2022); windows-latest moved to VS2026,
+        # which classic scikit-build does not yet support.
+        runs-on: [ubuntu-latest, macos-14, windows-2022]
         session: [dist, test]
 
     name: ${{ matrix.session }} on ${{ matrix.runs-on }}
@@ -44,7 +46,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runs-on: [ubuntu-latest, windows-latest, macos-14]
+        runs-on: [ubuntu-latest, windows-2022, macos-14]
     name: cibw on ${{ matrix.runs-on }}
     steps:
     - uses: actions/checkout@v4
