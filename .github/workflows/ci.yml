@@ -38,7 +38,7 @@ jobs:
       with:
         compiler: gcc
         version: 12
-    - uses: astral-sh/setup-uv@v3
+    - uses: astral-sh/setup-uv@v8.0.0
     - run: uvx nox -s ${{ matrix.session }}
 
   free-threading:
@@ -50,7 +50,7 @@ jobs:
     name: cibw on ${{ matrix.runs-on }}
     steps:
     - uses: actions/checkout@v4
-    - uses: astral-sh/setup-uv@v3
+    - uses: astral-sh/setup-uv@v8.0.0
     - uses: pypa/cibuildwheel@v2.21
       with:
           package-dir: projects/hello-free-threading
