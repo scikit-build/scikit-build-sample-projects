@@ -35,20 +35,16 @@ jobs:
       with:
         compiler: gcc
         version: 12
-    # setup-fortran installs MinGW via choco. The CC/FC env vars it sets are
-    # not honored through the uv build chain (CMake still picks MSVC), so force
-    # the GNU toolchain via CMAKE_ARGS, which scikit-build-core passes straight
-    # to cmake as -D defines. Full paths avoid depending on PATH; the bin dir is
-    # still added to PATH for the runtime DLLs.
-    - name: Set up MinGW Fortran (Windows)
+    # setup-fortran installs MinGW via choco, which only edits the machine PATH
+    # registry; GitHub Actions doesn't reload that into the running job. Put the
+    # bin dir on PATH so the build (and noxfile compiler lookup) can find it.
+    - name: Add MinGW to PATH (Windows)
       if: runner.os == 'Windows'
       shell: pwsh
       run: |
         $bin = Split-Path (Get-ChildItem C:\ProgramData\chocolatey\lib\mingw -Recurse -Filter gfortran.exe | Select-Object -First 1).FullName
         Write-Host "MinGW bin: $bin"
-        $fwd = $bin -replace '\\','/'
         "$bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
-        "CMAKE_ARGS=-DCMAKE_C_COMPILER=$fwd/gcc.exe -DCMAKE_Fortran_COMPILER=$fwd/gfortran.exe" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
     - uses: astral-sh/setup-uv@v8.0.0
     - run: uvx nox -s ${{ matrix.session }}
 
