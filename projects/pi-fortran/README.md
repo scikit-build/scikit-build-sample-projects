@@ -19,7 +19,9 @@ pytest
 
 This is slightly modified from the example in the [numpy docs](https://numpy.org/devdocs/f2py/buildtools/skbuild.html), but we are using Monte Carlo to estimate the value of $\pi$.
 
+The f2py glue is handled by [f2py-cmake](https://github.com/scikit-build/f2py-cmake): `include(UseF2Py)` and a single `f2py_add_module(pi/pi.pyf pi/_pi.f)` call generate the wrappers and build the extension, instead of wiring up `add_custom_command` and `fortranobject.c` by hand.
+
 A few surprises:
-1. The dreaded underscore problem has a way of cropping up. One solution is explicitly writing out the interface in a [signature (`.pyf`) file](https://numpy.org/devdocs/f2py/signature-file.html).
+1. The dreaded underscore problem has a way of cropping up. One solution is explicitly writing out the interface in a [signature (`.pyf`) file](https://numpy.org/devdocs/f2py/signature-file.html), which we pass to `f2py_add_module`.
 2. The module will require numpy to work.
-3. Between failed builds, it is best to clear out the `_skbuild` folder.
+3. Between failed builds, it is best to clear out the `build` folder.
