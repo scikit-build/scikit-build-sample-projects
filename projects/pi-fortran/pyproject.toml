@@ -2,6 +2,7 @@
 requires = [
     "scikit-build-core",
     "numpy>=1.21",
+    "f2py-cmake>=0.2",
 ]
 build-backend = "scikit_build_core.build"
 
