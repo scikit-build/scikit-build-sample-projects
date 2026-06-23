@@ -1,7 +1,7 @@
 [build-system]
 requires = [
     "setuptools>=42",
-    "scikit-build",
+    "scikit-build>=0.19.1",
     "cmake>=3.14",
     "ninja",
     "pybind11>=2.12"
