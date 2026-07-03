@@ -32,7 +32,7 @@ Development is driven by nox (`noxfile.py`). Use `uvx nox` (uv is the assumed ru
 
 - `hello_list` (tested by `test`): the four `hello-*` setuptools projects, plus `hello-cmake-package` and `pi-fortran` (**non-Windows only**), plus `hello-free-threading` (**Python 3.13+ only**).
 - `long_hello_list` (built by `dist`): `hello_list` plus `pen2-cython`, `core-c-hello`, `core-pybind11-hello`, `hatchling-pybind11-hello`.
-- `hello-free-threading` is wheel-built separately via cibuildwheel in CI (`free-threading` job), not through nox.
+- `hello-free-threading` and `core-nanobind-shared` are also wheel-built and tested via cibuildwheel in CI (`cibuildwheel` job); `hello-free-threading` only through that job, not nox.
 
 A new project is invisible to CI until added to the appropriate list here.
 

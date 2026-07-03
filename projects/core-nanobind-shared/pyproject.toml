@@ -13,3 +13,12 @@ requires-python = ">=3.9"
 classifiers = [
   "License :: OSI Approved :: MIT License",
 ]
+
+# One version is enough here; the point is exercising the wheel-repair step
+# (auditwheel/delocate) over the shipped shared library.
+[tool.cibuildwheel]
+build-frontend = "build[uv]"
+build = "cp312-*"
+archs = ["auto64"]
+test-command = "pytest {package}"
+test-requires = ["pytest"]
