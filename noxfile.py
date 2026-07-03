@@ -11,6 +11,7 @@ hello_list = [
     "hello-pybind11",
     "hello-cython",
     "core-cython-hello",
+    "core-nanobind-shared",
     "hello-cmake-package",
     "pi-fortran",
 ]
