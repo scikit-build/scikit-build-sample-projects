@@ -20,6 +20,7 @@ configured via `[tool.scikit-build]`.
 | [`core-c-hello`](projects/core-c-hello) | Raw C extension |
 | [`core-cython-hello`](projects/core-cython-hello) | Cython via [cython-cmake](https://github.com/scikit-build/cython-cmake) |
 | [`core-pybind11-hello`](projects/core-pybind11-hello) | pybind11 binding |
+| [`core-nanobind-shared`](projects/core-nanobind-shared) | [nanobind](https://nanobind.readthedocs.io) binding linking a shared library shipped in the wheel |
 | [`hello-cmake-package`](projects/hello-cmake-package) | Standalone C library, exported CMake package, and pybind11 wrapper |
 | [`hello-free-threading`](projects/hello-free-threading) | Free-threaded (no-GIL) build; requires Python 3.13+ |
 | [`pi-fortran`](projects/pi-fortran) | Fortran via f2py and [f2py-cmake](https://github.com/scikit-build/f2py-cmake) |
