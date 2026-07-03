@@ -9,10 +9,10 @@ A collection of small, self-contained example packages under `projects/`, each d
 Projects fall into distinct families; know which one you're editing before changing build config:
 
 - **Legacy `scikit-build`** (`build-backend = "setuptools.build_meta"`, has `setup.py`): `hello-pure`, `hello-cpp`, `hello-cython`, `hello-pybind11`, `pen2-cython`, `tower-of-babel`. Build requires include `scikit-build`, `cmake`, `ninja` in `[build-system].requires`. Metadata lives in `setup.py`.
-- **Modern `scikit-build-core`** (`build-backend = "scikit_build_core.build"`, pyproject-only, no `setup.py`): `core-c-hello`, `core-pybind11-hello`, `hello-free-threading`, `pi-fortran`, `hello-cmake-package`. Metadata lives in `[project]`; configure via `[tool.scikit-build]`.
+- **Modern `scikit-build-core`** (`build-backend = "scikit_build_core.build"`, pyproject-only, no `setup.py`): `core-c-hello`, `core-cython-hello`, `core-pybind11-hello`, `core-nanobind-shared`, `hello-free-threading`, `pi-fortran`, `hello-cmake-package`. Metadata lives in `[project]`; configure via `[tool.scikit-build]`.
 - **Hatchling + scikit-build-core plugin** (`build-backend = "hatchling.build"`): `hatchling-pybind11-hello`, using `[tool.hatch.build.targets.wheel.hooks.scikit-build]`.
 
-Language bindings vary per project: pure Python, raw C/C++, pybind11, Cython, Fortran (`pi-fortran`). `tower-of-babel` is the broadest, exercising Boost + Cython static/shared linkage.
+Language bindings vary per project: pure Python, raw C/C++, pybind11, nanobind (`core-nanobind-shared`, which also demonstrates linking to a shared library shipped in the wheel), Cython, Fortran (`pi-fortran`). `tower-of-babel` is the broadest, exercising Boost + Cython static/shared linkage.
 
 ## Commands
 
