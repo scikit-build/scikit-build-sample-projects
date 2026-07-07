@@ -1,0 +1,20 @@
+[build-system]
+requires = ["scikit-build-core", "cffi>=2.1"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "hello"
+version = "1.2.3"
+authors = [
+  { name = "The scikit-build team" },
+]
+description = "a minimal example package (cffi cffi-gen-src version)"
+# cffi 2.1, the first release with cffi-gen-src, requires Python 3.10
+requires-python = ">=3.10"
+license = "MIT"
+# The generated extension imports _cffi_backend at runtime
+dependencies = ["cffi"]
+
+[tool.scikit-build]
+# The builder script is a build-time input, not part of the package
+wheel.exclude = ["hello/_hello_build.py"]

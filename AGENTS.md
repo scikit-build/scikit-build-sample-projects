@@ -9,10 +9,10 @@ A collection of small, self-contained example packages under `projects/`, each d
 Projects fall into distinct families; know which one you're editing before changing build config:
 
 - **Legacy `scikit-build`** (`build-backend = "setuptools.build_meta"`, has `setup.py`): `hello-pure`, `hello-cpp`, `hello-cython`, `hello-pybind11`, `pen2-cython`, `tower-of-babel`. Build requires include `scikit-build`, `cmake`, `ninja` in `[build-system].requires`. Metadata lives in `setup.py`.
-- **Modern `scikit-build-core`** (`build-backend = "scikit_build_core.build"`, pyproject-only, no `setup.py`): `core-c-hello`, `core-cython-hello`, `core-pybind11-hello`, `core-nanobind-shared`, `hello-free-threading`, `pi-fortran`, `hello-cmake-package`. Metadata lives in `[project]`; configure via `[tool.scikit-build]`.
+- **Modern `scikit-build-core`** (`build-backend = "scikit_build_core.build"`, pyproject-only, no `setup.py`): `core-c-hello`, `core-cffi-hello`, `core-cython-hello`, `core-pybind11-hello`, `core-nanobind-shared`, `hello-free-threading`, `pi-fortran`, `hello-cmake-package`. Metadata lives in `[project]`; configure via `[tool.scikit-build]`.
 - **Hatchling + scikit-build-core plugin** (`build-backend = "hatchling.build"`): `hatchling-pybind11-hello`, using `[tool.hatch.build.targets.wheel.hooks.scikit-build]`.
 
-Language bindings vary per project: pure Python, raw C/C++, pybind11, nanobind (`core-nanobind-shared`, which also demonstrates linking to a shared library shipped in the wheel), Cython, Fortran (`pi-fortran`). `tower-of-babel` is the broadest, exercising Boost + Cython static/shared linkage.
+Language bindings vary per project: pure Python, raw C/C++, pybind11, nanobind (`core-nanobind-shared`, which also demonstrates linking to a shared library shipped in the wheel), cffi (`core-cffi-hello`, generating the extension source with `cffi-gen-src`), Cython, Fortran (`pi-fortran`). `tower-of-babel` is the broadest, exercising Boost + Cython static/shared linkage.
 
 ## Commands
 
@@ -30,7 +30,7 @@ Development is driven by nox (`noxfile.py`). Use `uvx nox` (uv is the assumed ru
 
 `noxfile.py` defines which projects participate, with platform/version gates that must be respected when adding or moving a project:
 
-- `hello_list` (tested by `test`): the four `hello-*` setuptools projects, plus `hello-cmake-package` and `pi-fortran` (**non-Windows only**), plus `hello-free-threading` (**Python 3.13+ only**).
+- `hello_list` (tested by `test`): the four `hello-*` setuptools projects, plus `hello-cmake-package` and `pi-fortran` (**non-Windows only**), plus `core-cffi-hello` (**Python 3.10+ only**, also in `long_hello_list`) and `hello-free-threading` (**Python 3.13+ only**).
 - `long_hello_list` (built by `dist`): `hello_list` plus `pen2-cython`, `core-c-hello`, `core-pybind11-hello`, `hatchling-pybind11-hello`.
 - `hello-free-threading` and `core-nanobind-shared` are also wheel-built and tested via cibuildwheel in CI (`cibuildwheel` job); `hello-free-threading` only through that job, not nox.
 
