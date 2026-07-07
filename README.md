@@ -18,6 +18,7 @@ configured via `[tool.scikit-build]`.
 | Project | Demonstrates |
 | --- | --- |
 | [`core-c-hello`](projects/core-c-hello) | Raw C extension |
+| [`core-cffi-hello`](projects/core-cffi-hello) | [cffi](https://cffi.readthedocs.io) via the `cffi-gen-src` source generator; requires Python 3.10+ |
 | [`core-cython-hello`](projects/core-cython-hello) | Cython via [cython-cmake](https://github.com/scikit-build/cython-cmake) |
 | [`core-pybind11-hello`](projects/core-pybind11-hello) | pybind11 binding |
 | [`core-nanobind-shared`](projects/core-nanobind-shared) | [nanobind](https://nanobind.readthedocs.io) binding linking a shared library shipped in the wheel |
