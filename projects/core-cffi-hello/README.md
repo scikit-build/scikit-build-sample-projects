@@ -11,21 +11,25 @@ example in the cffi documentation.
 
 - `csrc/`: a plain C library (`square.c`/`square.h`) with no Python or cffi
   knowledge.
-- `src/hello/_hello_build.py`: an ordinary cffi builder script — an `FFI`
-  object with `cdef()` and `set_source()`. It is the same file a setuptools
-  project would pass to `cffi_modules=`, but here it is only a build-time
-  input to `cffi-gen-src exec-python`, which turns it into `_hello.c`.
+- `src/hello/_hello.cdef.txt` and `src/hello/_hello.csrc.c`: the FFI
+  definitions and the C source prelude, read by `cffi-gen-src read-sources`
+  and turned into `_hello.c`. This replaces the classic builder script (an
+  `FFI` object with `cdef()` and `set_source()`); if you already have one,
+  the `exec-python` subcommand runs it directly instead.
 - `src/hello/`: the pure Python package, picked up automatically because it
-  matches the project name. `wheel.exclude` keeps the builder script out of
-  the wheel.
+  matches the project name. `wheel.exclude` keeps the cdef/csrc build inputs
+  out of the wheel.
 
 ## The parts that trip people up
 
 - **Run the generator from CMake.** An `add_custom_command` invokes
-  `python -m cffi.gen_src exec-python <builder> _hello.c` (the module form of
-  the `cffi-gen-src` script), so cffi from `[build-system].requires` is used.
-  The generated file lands in the build tree and is compiled together with
-  `csrc/square.c` by `python_add_library`.
+  `python -m cffi.gen_src read-sources hello._hello <cdef> <csrc> _hello.c`
+  (the module form of the `cffi-gen-src` script), so cffi from
+  `[build-system].requires` is used. The generated file lands in the build
+  tree and is compiled together with `csrc/square.c` by `python_add_library`.
+  The module name (`hello._hello`) is a command-line argument here, not
+  something read from a file — it must match where the extension is
+  installed.
 - **Compile/link flags move to CMake.** `cffi-gen-src` ignores the
   `libraries=`, `include_dirs=`, `library_dirs=`, and `extra_compile_args=`
   arguments of `set_source()`; use `target_include_directories`,

@@ -16,5 +16,5 @@ license = "MIT"
 dependencies = ["cffi"]
 
 [tool.scikit-build]
-# The builder script is a build-time input, not part of the package
-wheel.exclude = ["hello/_hello_build.py"]
+# The cdef/csrc files are build-time inputs, not part of the package
+wheel.exclude = ["hello/_hello.cdef.txt", "hello/_hello.csrc.c"]
