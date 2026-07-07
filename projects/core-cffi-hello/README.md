@@ -34,6 +34,14 @@ example in the cffi documentation.
   `libraries=`, `include_dirs=`, `library_dirs=`, and `extra_compile_args=`
   arguments of `set_source()`; use `target_include_directories`,
   `target_link_libraries`, etc. instead.
+- **The limited API / abi3.** cffi's generated code targets the limited API;
+  on MSVC release builds it defines `Py_LIMITED_API` on its own (unless
+  `CFFI_NO_LIMITED_API` is defined), which makes `pyconfig.h` auto-link
+  `python3.lib` — and the link fails if CMake linked the version-specific
+  library instead. This sample leans in: `wheel.py-api = "cp310"` plus
+  `python_add_library(... USE_SABI 3.10 ...)` produce a single abi3 wheel
+  for all CPython >= 3.10. If you want per-version wheels instead, define
+  `CFFI_NO_LIMITED_API` when compiling on MSVC.
 - **cffi is a runtime dependency.** The compiled module imports
   `_cffi_backend` when loaded, so `cffi` stays in `[project].dependencies`.
 - **Python 3.10+.** cffi 2.1 is the first release shipping `cffi-gen-src`
