@@ -14,11 +14,10 @@ add_custom_command(
   DEPENDS "${HELLO_CDEF}" "${HELLO_CSRC}"
   VERBATIM)
 
-# cffi's generated code targets the limited API (on MSVC release builds it
-# defines Py_LIMITED_API itself), so build an abi3 extension.
-# SKBUILD_SABI_COMPONENT is empty when abi3 is unavailable (free-threading).
+# cffi's generated code targets the limited API unless
+# _CFFI_NO_LIMITED_API is defined (or unavailable, like on 3.14t)
 if(NOT "${SKBUILD_SABI_COMPONENT}" STREQUAL "")
-  python_add_library(_hello MODULE USE_SABI 3.10 WITH_SOABI
+  python_add_library(_hello MODULE USE_SABI "${SKBUILD_SABI_VERSION}" WITH_SOABI
                      "${CMAKE_CURRENT_BINARY_DIR}/_hello.c" csrc/square.c)
 else()
   python_add_library(_hello MODULE WITH_SOABI

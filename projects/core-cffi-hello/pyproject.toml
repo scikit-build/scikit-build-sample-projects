@@ -19,4 +19,4 @@ dependencies = ["cffi"]
 # The cdef/csrc files are build-time inputs, not part of the package
 wheel.exclude = ["hello/_hello.cdef.txt", "hello/_hello.csrc.c"]
 # cffi's generated code is limited-API compatible; ship one abi3 wheel
-wheel.py-api = "cp310"
+wheel.py-api = "cp310.cp315t"
