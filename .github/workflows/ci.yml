@@ -43,6 +43,10 @@ jobs:
         $bin = Split-Path (Get-ChildItem C:\ProgramData\chocolatey\lib\mingw -Recurse -Filter gfortran.exe | Select-Object -First 1).FullName
         "$bin" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
     - uses: astral-sh/setup-uv@v8.0.0
+      with:
+        # INVESTIGATION: 0.11.28 breaks the Windows Cython build env
+        # (cython.exe -> ModuleNotFoundError: No module named 'Cython').
+        version: "0.11.27"
     - run: uvx nox -s ${{ matrix.session }}
 
   cibuildwheel:
