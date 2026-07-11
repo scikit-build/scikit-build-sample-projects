@@ -4,7 +4,7 @@ requires = [
     "scikit-build>=0.19.1",
     "cmake>=3.18",
     "ninja",
-    "cython",
+    "cython<3.2.8",  # INVESTIGATION: test Windows dist failure
 ]
 build-backend = "setuptools.build_meta"
 

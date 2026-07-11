@@ -1,5 +1,6 @@
 [build-system]
-requires = ["scikit-build-core", "cython>=3.0", "cython-cmake"]
+# INVESTIGATION: pin cython<3.2.8 to test the Windows dist failure
+requires = ["scikit-build-core", "cython>=3.0,<3.2.8", "cython-cmake"]
 build-backend = "scikit_build_core.build"
 
 [project]
