@@ -15,10 +15,15 @@ classifiers = [
 ]
 
 # One version is enough here; the point is exercising the wheel-repair step
-# (auditwheel/delocate) over the shipped shared library.
+# (auditwheel/delocate/delvewheel) over the shipped shared library.
 [tool.cibuildwheel]
 build-frontend = "build[uv]"
 build = "cp312-*"
 archs = ["auto64"]
 test-command = "pytest {package}"
 test-requires = ["pytest"]
+
+# say_hello.dll is installed next to the .pyd, so delvewheel (default on
+# Windows since cibuildwheel 4.0) must not try to locate and re-vendor it.
+[tool.cibuildwheel.windows]
+repair-wheel-command = "delvewheel repair --ignore-existing -w {dest_dir} {wheel}"

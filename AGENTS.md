@@ -30,7 +30,7 @@ Development is driven by nox (`noxfile.py`). Use `uvx nox` (uv is the assumed ru
 
 `noxfile.py` defines which projects participate, with platform/version gates that must be respected when adding or moving a project:
 
-- `hello_list` (tested by `test`): the four `hello-*` setuptools projects, plus `hello-cmake-package` and `pi-fortran` (**non-Windows only**), plus `core-cffi-hello` (**Python 3.10+ only**, also in `long_hello_list`) and `hello-free-threading` (**Python 3.13+ only**).
+- `hello_list` (tested by `test`): the four `hello-*` setuptools projects, plus `hello-cmake-package` and `pi-fortran` (**non-Windows only**), plus `core-cffi-hello` (**Python 3.10+ only**, also in `long_hello_list`) and `hello-free-threading` (**Python 3.14+ only**).
 - `long_hello_list` (built by `dist`): `hello_list` plus `pen2-cython`, `core-c-hello`, `core-pybind11-hello`, `hatchling-pybind11-hello`.
 - `hello-free-threading` and `core-nanobind-shared` are also wheel-built and tested via cibuildwheel in CI (`cibuildwheel` job); `hello-free-threading` only through that job, not nox.
 
