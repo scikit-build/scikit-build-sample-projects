@@ -56,11 +56,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: astral-sh/setup-uv@v8.0.0
-    - uses: pypa/cibuildwheel@v2.21
+    - uses: pypa/cibuildwheel@v4.1.0
       with:
           package-dir: projects/${{ matrix.package }}
-      env:
-        CIBW_PRERELEASE_PYTHONS: True
 
   pass:
     if: always()
