@@ -30,7 +30,7 @@ Development is driven by nox (`noxfile.py`). Use `uvx nox` (uv is the assumed ru
 
 `noxfile.py` defines which projects participate, with platform/version gates that must be respected when adding or moving a project:
 
-- `hello_list` (tested by `test`): the four `hello-*` setuptools projects, plus `hello-cmake-package` and `pi-fortran` (**non-Windows only**), plus `core-cffi-hello` (**Python 3.10+ only**, also in `long_hello_list`) and `hello-free-threading` (**Python 3.13+ only**).
+- `hello_list` (tested by `test`): the four `hello-*` setuptools projects, plus `hello-cmake-package` and `pi-fortran` (**non-Windows only**), plus `hello-free-threading` (**Python 3.13+ only**).
 - `long_hello_list` (built by `dist`): `hello_list` plus `pen2-cython`, `core-c-hello`, `core-pybind11-hello`, `hatchling-pybind11-hello`.
 - `hello-free-threading` and `core-nanobind-shared` are also wheel-built and tested via cibuildwheel in CI (`cibuildwheel` job); `hello-free-threading` only through that job, not nox.
 
@@ -38,6 +38,6 @@ A new project is invisible to CI until added to the appropriate list here.
 
 ## Conventions
 
-- Minimum Python is 3.9; ruff `target-version = "py39"`, line length 88.
+- Minimum Python is 3.11; ruff `target-version = "py311"`, line length 88.
 - CI (`.github/workflows/ci.yml`) runs `dist` and `test` on ubuntu / macos-13 / windows via `uvx nox`. Fortran toolchain is set up on non-Windows runners.
 - Untracked build outputs (`build/`, `_skbuild/`, `*.egg-info/`, generated `include/`/`share/` dirs, `uv.lock`) are byproducts — don't commit them.
