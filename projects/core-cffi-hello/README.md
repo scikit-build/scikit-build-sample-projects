@@ -38,12 +38,9 @@ example in the cffi documentation.
   on MSVC release builds it defines `Py_LIMITED_API` on its own (unless
   `CFFI_NO_LIMITED_API` is defined), which makes `pyconfig.h` auto-link
   `python3.lib` — and the link fails if CMake linked the version-specific
-  library instead. This sample leans in: `wheel.py-api = "cp310"` plus
-  `python_add_library(... USE_SABI 3.10 ...)` produce a single abi3 wheel
-  for all CPython >= 3.10. If you want per-version wheels instead, define
+  library instead. This sample leans in: `wheel.py-api = "cp311"` plus
+  `python_add_library(... USE_SABI 3.11 ...)` produce a single abi3 wheel
+  for all CPython >= 3.11. If you want per-version wheels instead, define
   `CFFI_NO_LIMITED_API` when compiling on MSVC.
 - **cffi is a runtime dependency.** The compiled module imports
   `_cffi_backend` when loaded, so `cffi` stays in `[project].dependencies`.
-- **Python 3.10+.** cffi 2.1 is the first release shipping `cffi-gen-src`
-  and requires Python 3.10, so `requires-python` (and the gate in the
-  top-level `noxfile.py`) reflect that.

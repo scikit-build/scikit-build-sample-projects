@@ -12,6 +12,7 @@ hello_list = [
     "hello-cython",
     "core-cython-hello",
     "core-nanobind-shared",
+    "core-cffi-hello",
     "hello-cmake-package",
     "pi-fortran",
 ]
@@ -22,10 +23,6 @@ long_hello_list = [
     "core-pybind11-hello",
     "hatchling-pybind11-hello",
 ]
-if sys.version_info >= (3, 10):
-    # cffi 2.1 (first release with cffi-gen-src) requires Python 3.10
-    hello_list.append("core-cffi-hello")
-    long_hello_list.append("core-cffi-hello")
 if sys.version_info >= (3, 13):
     hello_list.append("hello-free-threading")
 
