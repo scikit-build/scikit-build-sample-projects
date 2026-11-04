@@ -22,3 +22,7 @@ build = "cp312-*"
 archs = ["auto64"]
 test-command = "pytest {package}"
 test-requires = ["pytest"]
+
+# TODO: delvewheel can't find say_hello.dll, which is already in the wheel.
+[tool.cibuildwheel.windows]
+repair-wheel-command = ""
