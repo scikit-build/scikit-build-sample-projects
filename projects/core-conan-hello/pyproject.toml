@@ -1,0 +1,28 @@
+[build-system]
+requires = ["scikit-build-core>=0.11", "pybind11", "conan>=2"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "conan-hello"
+version = "0.1.0"
+authors = [
+  { name = "The scikit-build team" },
+]
+description = "a minimal example package using Conan for a C++ dependency"
+requires-python = ">=3.11"
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+]
+
+[tool.scikit-build]
+minimum-version = "build-system.requires"
+cmake.version = ">=3.24"
+# Conan runs as a CMake dependency provider during the configure step.
+cmake.define.CMAKE_PROJECT_TOP_LEVEL_INCLUDES = "conan_provider.cmake"
+
+[tool.cibuildwheel]
+build-frontend = "build[uv]"
+build = "cp312-*"
+archs = ["auto64"]
+test-command = "pytest {package}"
+test-requires = ["pytest"]

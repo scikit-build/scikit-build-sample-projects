@@ -51,7 +51,7 @@ jobs:
       fail-fast: false
       matrix:
         runs-on: [ubuntu-latest, windows-latest, macos-14]
-        package: [hello-free-threading, core-nanobind-shared]
+        package: [hello-free-threading, core-nanobind-shared, core-conan-hello]
     name: cibw ${{ matrix.package }} on ${{ matrix.runs-on }}
     steps:
     - uses: actions/checkout@v7

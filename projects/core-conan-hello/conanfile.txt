@@ -1,0 +1,5 @@
+[requires]
+fmt/11.1.4
+
+[generators]
+CMakeConfigDeps
