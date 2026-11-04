@@ -601,7 +601,7 @@ macro(conan_provide_dependency method package_name)
         endif()
 
         get_property(_multiconfig_generator GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
-        
+
         if(DEFINED CONAN_INSTALL_BUILD_CONFIGURATIONS)
             # Configurations are specified by the project or user
             set(_build_configs "${CONAN_INSTALL_BUILD_CONFIGURATIONS}")
@@ -612,13 +612,13 @@ macro(conan_provide_dependency method package_name)
             endif()
             unset(_build_configs_length)
         else()
-            # No configuration overrides, provide sensible defaults            
+            # No configuration overrides, provide sensible defaults
             if(_multiconfig_generator)
                 set(_build_configs Release Debug)
             else()
                 set(_build_configs ${CMAKE_BUILD_TYPE})
             endif()
-            
+
         endif()
 
         list(JOIN _build_configs ", " _build_configs_msg)
