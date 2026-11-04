@@ -23,7 +23,7 @@ configured via `[tool.scikit-build]`.
 | [`core-pybind11-hello`](projects/core-pybind11-hello) | pybind11 binding |
 | [`core-nanobind-shared`](projects/core-nanobind-shared) | [nanobind](https://nanobind.readthedocs.io) binding linking a shared library shipped in the wheel |
 | [`hello-cmake-package`](projects/hello-cmake-package) | Standalone C library, exported CMake package, and pybind11 wrapper |
-| [`hello-free-threading`](projects/hello-free-threading) | Free-threaded (no-GIL) build; requires Python 3.13+ |
+| [`hello-free-threading`](projects/hello-free-threading) | Free-threaded (no-GIL) build; requires Python 3.14+ |
 | [`pi-fortran`](projects/pi-fortran) | Fortran via f2py and [f2py-cmake](https://github.com/scikit-build/f2py-cmake) |
 
 ### Hatchling + scikit-build-core plugin

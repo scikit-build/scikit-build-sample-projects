@@ -23,7 +23,7 @@ long_hello_list = [
     "core-pybind11-hello",
     "hatchling-pybind11-hello",
 ]
-if sys.version_info >= (3, 13):
+if sys.version_info >= (3, 14):
     hello_list.append("hello-free-threading")
 
 
